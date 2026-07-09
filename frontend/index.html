@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>ระบบบันทึกข้อมูลหนังสือห้องสมุด (libbook)</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <div class="container mx-auto p-6 max-w-4xl">
+        <header class="bg-white p-4 rounded shadow mb-6 text-center border-t-4 border-blue-500">
+            <h1 class="text-2xl font-bold text-gray-900">📚 ระบบบันทึกข้อมูลหนังสือห้องสมุด (libbook)</h1>
+            <p class="text-md text-blue-600 font-medium mt-1">ผู้พัฒนา: นายกฤติน พิมศิริ | รหัสนักศึกษา: 68319010001</p>
+        </header>
+
+        <div class="bg-white p-6 rounded shadow mb-6">
+            <h2 id="formTitle" class="text-lg font-semibold mb-4 text-gray-700">เพิ่มรายการหนังสือใหม่</h2>
+            <form id="bookForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input type="hidden" id="bookId">
+                <div>
+                    <label class="block text-sm font-medium mb-1">เลขทะเบียน / ISBN</label>
+                    <input type="text" id="isbn" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">ชื่อหนังสือ</label>
+                    <input type="text" id="title" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">ผู้แต่ง</label>
+                    <input type="text" id="author" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">หมวดหมู่</label>
+                    <input type="text" id="category" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">ปีที่พิมพ์</label>
+                    <input type="number" id="year" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">สถานะ</label>
+                    <select id="status" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-400 outline-none">
+                        <option value="พร้อมให้ยืม">พร้อมให้ยืม</option>
+                        <option value="ถูกยืม">ถูกยืม</option>
+                        <option value="ชำรุด">ชำรุด</option>
+                    </select>
+                </div>
+                <div class="md:col-span-2 flex gap-2 mt-2">
+                    <button type="submit" id="saveBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full transition">บันทึกข้อมูล</button>
+                    <button type="button" id="cancelBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded hidden transition">ยกเลิก</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg-white p-6 rounded shadow overflow-x-auto">
+            <h2 class="text-lg font-semibold mb-4 text-gray-700">รายการทะเบียนหนังสือทั้งหมด</h2>
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-100 border-b">
+                        <th class="p-3 text-sm font-semibold">ISBN</th>
+                        <th class="p-3 text-sm font-semibold">ชื่อหนังสือ</th>
+                        <th class="p-3 text-sm font-semibold">ผู้แต่ง / ปี</th>
+                        <th class="p-3 text-sm font-semibold">หมวดหมู่</th>
+                        <th class="p-3 text-sm font-semibold">สถานะ</th>
+                        <th class="p-3 text-sm font-semibold text-center">จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody id="bookList">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
